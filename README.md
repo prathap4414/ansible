@@ -26,7 +26,7 @@ Your managed container Dockerfile expects the public key inside the managed fold
 This ensures that the managed container automatically trusts the Ansible master user.
 
 ```bash
-cp ssh-keys/id_rsa.pub managed/id_rsa.pub
+copy ssh-keys\id_rsa.pub managed\id_rsa.pub
 ```
 
 ---
