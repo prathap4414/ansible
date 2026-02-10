@@ -1,0 +1,22 @@
+- name: create file and directory
+  hosts: webservers
+  become: true
+  vars:
+    directory_path: ./testfile
+    file_path: ./testfile/hello.txt
+    content: "hello world"
+  tasks:
+    - name: create file and directory
+      file:
+        path: "{{ directory_path }}"
+        state: directory
+    - name: copy content to file
+      vars: 
+        file_mode: '644'
+      copy:
+        content: "{{ content }}"
+        dest: "{{ file_path }}"
+        mode: "{{ file_mode }}"
+    - name: display content of file
+      command: cat "{{ file_path }}"
+      register: output

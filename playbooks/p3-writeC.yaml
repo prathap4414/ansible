@@ -1,0 +1,12 @@
+- name: create file and directory
+  hosts: dbservers
+  become: true
+  tasks:
+    - name: create file and directory
+      file:
+        path: ./testfile
+        state: directory
+    - name: copy content to file
+      copy:
+        content: "hello world"
+        dest: ./testfile/hello.txt

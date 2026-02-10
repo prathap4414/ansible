@@ -1,0 +1,15 @@
+- name: Error handling example
+   hosts: all
+   tasks:
+     - block:
+         - name: Try reading file
+           command: cat /tmp/test.txt
+       rescue:
+         - name: create file if missing
+           file:
+              path: /tmp/test.txt
+              state: touch
+       always:
+         - name: Alwats print message
+           debug: 
+              msg: This runs no matters what
